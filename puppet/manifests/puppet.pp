@@ -15,8 +15,38 @@ File {
   mode  => '0644',
 }
 
+
+
+
 # all boxes get the base config
 include baseconfig
+
+
+
+
+node 'slave41' {
+
+
+}
+
+
+
+node 'slave42' {
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 node 'ex6proxy' {
   include nginx, nginx_vhosts

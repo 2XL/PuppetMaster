@@ -93,6 +93,34 @@ sudo apt-get --yes install puppet
 sudo apt-get install git
 # crear una carpeta propia per cada hostname
 # on emagatzemara lo seu log acumulatiu
+echo "Config File "
+
+mkdir sim
+mkdir sim/$HOSTNAME
+touch sim/$HOSTNAME/config.conf
+
+echo "Create Output Log "
+if [ ! -f "sim/$HOSTNAME/log" ];
+then
+	touch sim/$HOSTNAME/log;
+fi
+
+echo "Clone Git Repo"
+
+echo "Create Output Log "
+if [ ! -d "sim/$HOSTNAME/doFoo" ];
+then
+	git clone https://github.com/2XL/doFoo.git
+fi
+
+
+echo "Launch Check LogStatus Deamon"
+echo "TODO, re summon deamon when config.conf change"
+
+
+
+
+
 
 }
 
@@ -129,12 +157,12 @@ case "$1" in
 	clear)
 		clear
 		;;
-
 	bootstrap)
 		bootstrap
 		;;
 	*)
         echo $"Usage: $0 {start|stop|restart|condrestart|status}"
+        bootstrap
         exit 1
  
 esac
