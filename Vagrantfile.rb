@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     config.vm.define node[:hostname] do |nodeconfig|
       nodeconfig.vm.box = "precise32"
       nodeconfig.vm.hostname = node[:hostname] + ".box"
-      nodeconfig.vm.network :private_network, ip: node[:ip]
+      nodeconfig.vm.network :private_network, ip node[:ip]
 
       memory = node[:ram] ? node[:ram] : 256;
       nodeconfig.vm.provider :virtualbox do |vb|
@@ -31,6 +31,8 @@ Vagrant.configure("2") do |config|
       end
     end
   end
+
+  config.vm.provision :shell, :path => "setup.sh bootstrap"
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
